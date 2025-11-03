@@ -1,6 +1,13 @@
-services:
-  - type: web
-    name: ITkol
-    env: python
-    buildCommand: ./build.sh
-    startCommand: gunicorn config.wsgi:application
+  services:
+    - type: web
+      name: ITkol-1
+      runtime: python
+      repo: https://github.com/Samandar2309/ITkol
+      plan: free
+      region: oregon
+      buildCommand: |
+        pip install -r requirements.txt
+        python manage.py migrate --noinput
+        python manage.py collectstatic --noinput
+      startCommand: gunicorn config.wsgi:application
+      autoDeployTrigger: commit
