@@ -2,9 +2,5 @@ services:
   - type: web
     name: ITkol
     env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py makemigrations --noinput
-      python manage.py migrate --noinput
+    buildCommand: ./build.sh
     startCommand: gunicorn config.wsgi:application
-  
