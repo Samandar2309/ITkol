@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: ITkol
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn config.wsgi:application"
+    pythonVersion: 3.11.9
